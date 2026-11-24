@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pomodori Focus | Mindful Study & Coding Timer</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="studio-shell">
+    <!-- Left / Main Timer Panel -->
+    <section class="timer-panel">
+      <div class="top-row">
+        <span class="mode-pill">🍅 Pomodori Studio</span>
+        <button type="button" id="chime-toggle" class="ghost-btn" aria-pressed="true">
+          🔔 Chime On
+        </button>
+      </div>
+
+      <div class="preset-tabs" role="tablist" aria-label="Timer Modes">
+        <button type="button" class="preset-btn active" data-mode="focus">Focus</button>
+        <button type="button" class="preset-btn" data-mode="short">Short Break</button>
+        <button type="button" class="preset-btn" data-mode="long">Long Break</button>
+      </div>
+
+      <div class="ring-stage">
+        <svg class="progress-ring" width="240" height="240" viewBox="0 0 240 240">
+          <circle class="ring-track" cx="120" cy="120" r="102" />
+          <circle id="ring-indicator" class="ring-fill" cx="120" cy="120" r="102" />
+        </svg>
+        <div class="ring-center">
+          <div id="clock-readout" class="clock-text">25:00</div>
+          <div id="session-status" class="status-label">Ready to focus</div>
+        </div>
+      </div>
+
+      <div class="goal-box">
+        <label for="session-goal" class="goal-label">Current Sprint Topic</label>
+        <input
+          type="text"
+          id="session-goal"
+          placeholder="e.g., Java StringBuilder practice or DLCO unit notes..."
+          maxlength="90"
+        />
+      </div>
+
+      <div class="action-row">
+        <button type="button" id="start-pause-btn" class="primary-btn">Start Sprint</button>
+        <button type="button" id="reset-btn" class="secondary-btn">Reset</button>
+        <button type="button" id="skip-btn" class="secondary-btn">Next Mode →</button>
+      </div>
+
+      <details class="custom-durations">
+        <summary>Adjust Interval Lengths (Minutes)</summary>
+        <div class="duration-grid">
+          <label>
+            Focus
+            <input type="number" id="focus-mins" min="1" max="120" value="25" />
+          </label>
+          <label>
+            Short Break
+            <input type="number" id="short-mins" min="1" max="45" value="5" />
+          </label>
+          <label>
+            Long Break
+            <input type="number" id="long-mins" min="1" max="60" value="15" />
+          </label>
+        </div>
+      </details>
+    </section>
+
+    <!-- Right / Session Log & Stats Panel -->
+    <aside class="log-panel">
+      <div class="stats-strip">
+        <div class="stat-tile">
+          <strong id="completed-count">0</strong>
+          <span>Focus Sessions</span>
+        </div>
+        <div class="stat-tile">
+          <strong id="focused-minutes">0m</strong>
+          <span>Total Focus Time</span>
+        </div>
+      </div>
+
+      <div class="log-header">
+        <h2>Completed Log</h2>
+        <button type="button" id="clear-log-btn" class="text-danger-btn">Clear Log</button>
+      </div>
+
+      <ul id="session-log" class="session-list"></ul>
+      <p id="empty-log-msg" class="empty-log">
+        No completed focus sprints yet. Finish a session to log your progress here.
+      </p>
+    </aside>
+  </main>
+
+  <script src="script.js" defer></script>
+</body>
+</html>
